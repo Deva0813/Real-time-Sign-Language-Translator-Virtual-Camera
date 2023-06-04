@@ -34,6 +34,14 @@ This program is developed to solve the communication barrier between Normal pers
 ```ps
 pip install -r requirements.txt
 ```
+#### To install pytorch :
+```ps
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+```
+### To install Nvidia CUDA and CNNtoolkit
+```ps
+Download form the official site
+```
 #### To run the flask app :
 ```ps
 python app.py
