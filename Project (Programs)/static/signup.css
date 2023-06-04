@@ -1,0 +1,64 @@
+body{
+    background-image: url("./img/m1.jpeg");
+}
+
+.an{
+    position:relative;
+    display: inline-block;
+    padding: 12px 36px;
+    margin: 10px 0;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border-radius: 40px;
+    background: linear-gradient(90deg,#0162c8,#55e7fc);
+    text-align: center;
+}
+
+button{
+    border: none;
+}
+
+.col-lg-5{
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+}
+
+.form-control{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background: #fff;
+    height: 40px;
+    font-size: 16px;
+}
+
+.form-select{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background: #fff;
+    height: 40px;
+    font-size: 16px;
+}
+
+.otp-form-label{
+    font-size: 30px;
+    font-weight: 600;
+    color: #000;
+}
+
+.otp-form-control{
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background: #fff;
+    height: 60px;
+    font-size: 16px;
+}

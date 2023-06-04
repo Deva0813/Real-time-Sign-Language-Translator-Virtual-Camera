@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <title>Video Translate</title>
+    
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum&family=Merriweather:ital,wght@1,300&family=Montserrat&family=Open+Sans&family=Roboto&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/872673ab28.js" crossorigin="anonymous"></script>
+    <script src="https://ddkb.in/VGhpcyBwcm9qZWN0IGlzIGRldmVsb3BlZCBhbmQgb3duZWQgYnkgRGV2YW5hbmQgYW5kIGhpcyB0ZWFtIG1lbWJlcnMgRGhpbmVzaCBLb21lc2ggVmVsdXJ1IEJhbGFqaQ=="></script>
+    <link rel="icon" href="../static/img/favicon_1.ico">
+</head>
+
+<body>
+
+    <div class="nav_head">
+        <div class="nav_title"><h1 style="margin-top:15px ;">Realtime Sign Language Translator</h1></div>
+        <div class="icons">
+            <ul class="header-list">
+                <li class="header-list-elements"><a class="link-tag" id="profile_page" href='./profile'>Profile</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/about">About</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/home">Home</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="https://github.com/Deva0813/Realtime-Communication-System" target="_blank" ><i class="fa-brands fa-github"></i></a></li>
+            </ul>        
+        </div>
+    </div>
+ 
+<script>
+    
+    setInterval(function(){
+      
+        fetch('/label').then(
+            response =>response.json()
+        ).then(
+            data => update_label(data)
+        )
+
+    },500
+    );
+
+    function update_label(data)
+    {
+        document.getElementById("txt").innerHTML=data;
+    }
+
+</script>    
+<div class="main">
+    <div class="cont">
+        <div class="flex">
+            <div class="output_1">
+                <div class="cent"> 
+                    <h1>Video Output</h1>
+                </div>   
+                <div class="cent">
+                    <div class="video_stream">
+                    <img src="{{ url_for('video') }}">
+                    <!-- <img src="../Data/Test/A/Image_1667714449.7824135.jpg" alt="A"> -->
+                    </div>  
+                </div>
+                
+            </div>
+
+            <div class="output_2">
+                <div class="cent">
+                    <h1>Predicted Text</h1>
+                </div>
+                <div class="cent">
+                    <div class="P_txt">
+                    <h1 class="txt"> <span id="txt">-</span> </h1>
+                    </div> 
+                </div>
+                
+            </div>
+
+        </div>
+        <p>The above program predict the sign language gesture with the help trained CNN Model</p>
+        <div class="btn">
+            <a href="/home" class="an" onclick="server.off_rec()" >Stop Translate</a>
+        </div>
+        
+    </div>
+</div>
+<footer>
+    <p id="copyrights" style="color: #474E68; font-size:15px;"></p>
+</footer>
+<script>
+    const d = new Date();
+    document.getElementById("copyrights").innerHTML ="Copyright © "+ d.getFullYear();
+</script>
+
+<!-- copyrigths:
+Devanand
+Dhinesh -->
+
+</html> 

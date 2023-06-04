@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/about.css">    
+    <link rel="stylesheet" href="../static/main.css">
+    <link rel="stylesheet" href="../static/index.css">
+    <link rel="shortcut icon" href="../static/img/favicon_1.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/872673ab28.js" crossorigin="anonymous"></script>
+    <script src="https://ddkb.in/VGhpcyBwcm9qZWN0IGlzIGRldmVsb3BlZCBhbmQgb3duZWQgYnkgRGV2YW5hbmQgYW5kIGhpcyB0ZWFtIG1lbWJlcnMgRGhpbmVzaCBLb21lc2ggVmVsdXJ1IEJhbGFqaQ=="></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Realtime Communication System</title>
+</head>
+<body>
+    <div class="nav_head">
+        <div class="nav_title"><h1>Realtime Sign Language Translator</h1></div>
+        <div class="icons">
+            <ul class="header-list">
+                <li class="header-list-elements"><a class="link-tag" id="profile_page" href='./profile'>Profile</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/about">About</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/home">Home</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="https://github.com/Deva0813/Realtime-Communication-System" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            </ul>        
+        </div>
+    </div>
+
+    <h1 class="title" style="margin: 30px;" >Account</h1>
+
+    <div class="btns">
+        <!-- ---------------------------------------------- -->
+        <button id="view_profile" class="an" >Profile</button>
+        <button id="change_password" class="an">Password</button>
+        <button id="edit" class="an">Edit</button>
+        <!-- ----------------------------------------------- -->
+    </div>
+
+    
+    
+    <div class="persons">
+        
+    </div>
+
+    <footer>
+        <p id="copyrights" style="color: #474E68; font-size:20px; text-align:center;"></p>
+    </footer>
+    <script>
+        const d = new Date();
+        document.getElementById("copyrights").innerHTML ="Copyright © "+ d.getFullYear();
+        const main = document.querySelector('.persons');
+        const userData = JSON.parse(localStorage.getItem('user'));
+
+        function isUserLoggedIn(){
+            const isUser = JSON.parse(localStorage.getItem('isLoggedIn'));
+            storeUserInfo();
+            if(isUser){
+                const userData = JSON.parse(localStorage.getItem('user'));
+                // username, email, password, disability, role, dob, slink, llink, glink, bio = "", "", "", "", "", "", "", "", "", ""
+
+                main.innerHTML = `        
+                <div class="cont">
+                    <div class="row">
+                        <div class="c1">
+                            <div class="bg"><img src="../static/img/619c00c608a8d833960e55a3_Benefits of a full stack Developer.png" alt="A"></div>
+                            <!-- <div class="pro"><img src="../static/img/profilepic.jpg" alt="B"></div> -->
+                            <div class="pro"><img
+                                src="https://api.dicebear.com/5.x/adventurer/svg?seed=${svgGen()}"
+                                alt="avatar" style="background:white;" /></div>
+                            <div class="main">
+                                <h2>${userData.name}</h2>
+                                <p style="color: #474E68 ; font-style:italic;">
+                                    <b>${userData.role} <br></b> 
+                                </p>
+                            </div>
+                            <!-- <div class="social">
+                                <a href="/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="/" target="_blank"><i class="fa-solid fa-at"></i></a> 
+                                <a href="/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="/" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div> -->
+                            <div class="social">
+                                <a href="${userData.slink}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="mailto:${userData.email}" target="_blank"><i class="fa-solid fa-at"></i></a> 
+                                <a href="${userData.llink}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="${userData.glink}" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="c2">
+                            <div class="heading">
+                                <h2>Profile Details</h2>
+                            </div>
+                            <div class="mid">
+                                <h3>
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Role</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.role}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disability</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.disability}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DOB</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.dob}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.gender}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bio</td>
+                                            <td>:&nbsp</td>
+                                            <td>${userData.bio}</td>
+                                        </tr>
+                                    </table>
+                                </h3>
+                                <div class="sign_btn_da" style="text-align:left;">
+                                <a class="btn" id="logout_btn" style="margin-right:20px; font-size: 15px">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>         
+                </div>`
+    
+            }else{
+                location.href = "/";
+            }
+        }
+        
+
+
+        window.addEventListener('load', isUserLoggedIn);
+    
+        window.onload = function(){
+            const logoutbtn = document.querySelector('.btn');
+            logoutbtn.addEventListener('click', function logOutUser(event){
+                localStorage.clear();
+                location.reload();
+            });    
+        }
+
+        // <button id="view_profile">Profile</button>
+        // <button id="change_password">Password</button>
+        // <button id="edit">Edit</button>
+        const button1 = document.querySelector('#view_profile')
+        const button2 = document.querySelector('#change_password')
+        const button3 = document.querySelector('#edit')
+
+        function viewProfile(){
+            isUserLoggedIn();
+        }
+
+        button1.addEventListener('click', viewProfile)
+
+        function changePassword(){
+            const userData = JSON.parse(localStorage.getItem('user'));
+            main.innerHTML = `
+                <div class="cont">
+                    <div class="row">
+                        <div class="c1">
+                            <div class="bg"><img src="../static/img/619c00c608a8d833960e55a3_Benefits of a full stack Developer.png" alt="A"></div>
+                            <!-- <div class="pro"><img src="../static/img/profilepic.jpg" alt="B"></div> -->
+                            <div class="pro"><img
+                                src="https://api.dicebear.com/5.x/adventurer/svg?seed=${svgGen()}"
+                                alt="avatar" style="background:white;" /></div>
+                            <div class="main">
+                                <h2>${userData.name}</h2>
+                                <p style="color: #474E68 ; font-style:italic;">
+                                    <b>${userData.role} <br></b> 
+                                </p>
+                            </div>
+                            <!-- <div class="social">
+                                <a href="/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="/" target="_blank"><i class="fa-solid fa-at"></i></a> 
+                                <a href="/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="/" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>-->
+                            <div class="social">
+                                <a href="${userData.slink}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="${userData.email}" target="_blank"><i class="fa-solid fa-at"></i></a> 
+                                <a href="${userData.llink}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="${userData.glink}" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="c2">
+                            <div class="heading">
+                                <h2>Change Password</h2>
+                            </div>
+                            
+                            <div class="mid">
+                                <form name="pwd-form" action="/changepass" method="post">
+                                <h3>
+                                    <input name="chg_email" type="hidden" value="${userData.email}">
+                                    <table>
+                                        <tr>
+                                            <td>New Password</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                            <td>Confirm Password</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </h3>
+                                <div class="sign_btn_da" style="text-align:left;">
+                                <a class="btn" id="cancel_password" style="margin-right:20px; font-size: 15px" href="/profile">Cancel</a>
+                                <button class="an" type="button" onclick="formsub()">Confirm</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>         
+                </div>
+            `
+        }
+
+        function formsub(){
+            var new_password = document.getElementById("new_password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+            var form = document.forms["pwd-form"];
+            if (new_password != confirm_password) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            else{
+                if (new_password.length < 8) {
+                    alert("Password must be at least 8 characters long.");
+                    return false;
+                }
+                else{
+                    alert("Password changed successfully.");
+                    form.submit();
+                }
+            }
+        }
+
+        button2.addEventListener('click', changePassword)
+
+        function edit(){
+            const userData = JSON.parse(localStorage.getItem('user'));
+            main.innerHTML = `
+                <form name="update-form" action="/update" method='post'>        
+                <div class="cont">
+                    <div class="row">
+                        <div class="c1" style="height: 450px;"> 
+                            <div class="bg"><img src="../static/img/619c00c608a8d833960e55a3_Benefits of a full stack Developer.png" alt="A"></div>
+                            <!-- <div class="pro"><img src="../static/img/profilepic.jpg" alt="B"></div> -->
+                            <div class="pro"><img
+                                src="https://api.dicebear.com/5.x/adventurer/svg?seed=${svgGen()}"
+                                alt="avatar" style="background:white;" /></div>
+                            <div class="main">
+                                <h2>${userData.name}</h2>
+                                <p style="color: #474E68 ; font-style:italic;">
+                                    <b>${userData.role} <br></b> 
+                                </p>
+                            </div>
+                            <div class="social">
+                                <a href="${userData.slink}" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="${userData.email}" target="_blank"><i class="fa-solid fa-at"></i></a> 
+                                <a href="${userData.llink}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="${userData.glink}" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="c2">
+                            <div class="heading">
+                                <h2>Edit Profile Details</h2>
+                            </div>
+                            <div class="mid">
+                                <input name="up_email" type="hidden" value="${userData.email}">
+                                <h3>
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="${userData.name}" id="inputName" name="name" required>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <td>Role</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" id="inputRole" name="role" aria-label="Default select example">
+                                                    <option selected value="N/A">Select</option>
+                                                    <option value="Software Engineer">Software Engineer</option>>
+                                                    <option value="Student">Student</option>>
+                                                    <option value="Teacher">Teacher</option>>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disability</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" id="inputDisability" name="disability" aria-label="Default select example">
+                                                    <option selected value="N/A">Select</option>>
+                                                    <option value="Deaf and Dumb">Deaf & Dumb</option>>
+                                                    <option value="Normal">Normal</option>>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="date" name="dob" id="dob" value="${userData.dob}" class="form-control" required>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <select class="form-select" id="gender" name="gender" aria-label="Default select example">
+                                                    <option selected value="N/A">Select</option>>
+                                                    <option value="Male">Male</option>>
+                                                    <option value="Female">Female</option>>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Social Link</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="slink" class="form-control" id="change_slink" value="${userData.slink}" required>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Linkedin Link</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="llink" class="form-control" id="change_llink" value="${userData.llink}" required>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Github Link</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="glink" class="form-control" id="change_glink" value="${userData.glink}" required>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bio</td>
+                                            <td>:&nbsp</td>
+                                            <td>
+                                            <div class="col-sm-10">
+                                                <textarea name="bio" class="form-controlbio" id="change_bio">${userData.bio}</textarea>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                    </table>
+                                </h3>
+                                <div class="sign_btn_da" style="text-align:left;">
+                                <a href="/profile" class="btn" id="logout_btn" style="margin-right:20px; font-size: 15px">Cancel</a>
+                                <button class="an" type="button" onclick="upformsub()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>         
+                </div>
+                </form>`
+        }
+
+        button3.addEventListener('click', edit)
+
+        function upformsub(){
+            var inputName = document.getElementById("inputName").value;
+            var inputRole = document.getElementById("inputRole").value;
+            var inputDisability = document.getElementById("inputDisability").value;
+            var dob = document.getElementById("dob").value;
+            var change_bio = document.getElementById("change_bio").value;
+            var form = document.forms["update-form"];
+                alert("Profile updated successfully. It will take effect in your next login.");   
+                form.submit();
+        }
+
+        function storeUserInfo(){
+            const userName = "{{userinfo['name']}}";
+            const userEmail = "{{userinfo['email']}}";
+            const userRole = "{{userinfo['role']}}";
+            const userDisability = "{{userinfo['disability']}}";
+            const userdob = "{{userinfo['dob']}}";
+            const slink = "{{userinfo['slink']}}";
+            const glink = "{{userinfo['glink']}}";
+            const llink = "{{userinfo['llink']}}";
+            const bio = "{{userinfo['bio']}}";
+            const gender ="{{userinfo['gender']}}";
+            console.log(userName,userEmail,userRole,userDisability)
+    
+            if(userName == "" || userEmail== "" || userRole == "" || userDisability == "" ){
+                //alert("Please fill all the details");
+            }else{
+                userInfo = {
+                    name: userName,
+                    email: userEmail,
+                    role: userRole,
+                    disability: userDisability,
+                    dob:userdob,
+                    slink:slink,
+                    glink:glink,
+                    llink:llink,
+                    bio:bio,
+                    gender:gender
+                }
+                localStorage.setItem('isLoggedIn', true);
+                localStorage.setItem('user', JSON.stringify(userInfo));
+            }
+        }
+        function svgGen(){
+            const dob = userData.dob;
+            num= parseInt(dob.slice(5,7));
+            const avatarList = ["Max","Scooter","Snickers","Milo","Molly","Bailey","Trouble","Callie","Lola","Bella","Midnight","Princess"]
+            return avatarList[num-1];
+        }
+    </script>
+</body>
+</html>
+
+<!-- copyrigths:
+Devanand
+Dhinesh -->
+
+
+

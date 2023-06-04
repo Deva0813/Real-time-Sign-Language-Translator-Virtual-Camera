@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Translate</title>
+    <link rel="stylesheet" href="../static/audio.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum&family=Merriweather:ital,wght@1,300&family=Montserrat&family=Open+Sans&family=Roboto&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/872673ab28.js" crossorigin="anonymous"></script>
+    <script src="https://ddkb.in/VGhpcyBwcm9qZWN0IGlzIGRldmVsb3BlZCBhbmQgb3duZWQgYnkgRGV2YW5hbmQgYW5kIGhpcyB0ZWFtIG1lbWJlcnMgRGhpbmVzaCBLb21lc2ggVmVsdXJ1IEJhbGFqaQ=="></script>
+    <link rel="icon" href="../static/img/favicon_1.ico">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav_head">  
+        <div class="nav_title"><h1 style="margin-top:15px ;">Realtime Sign Language Translator</h1></div>
+        <div class="icons">
+            <ul class="header-list">
+                <li class="header-list-elements"><a class="link-tag" id="profile_page" href='./profile'>Profile</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/about">About</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="/home">Home</a></li>
+                <li class="header-list-elements"><a class="link-tag" href="https://github.com/Deva0813/Realtime-Communication-System" target="_blank" ><i class="fa-brands fa-github"></i></a></li>
+            </ul>        
+        </div>
+    </div>
+    <!-- Navigation Bar Ends -->
+    <!-- Main Body -->
+    <h1>Voice to Text Converter</h1>
+    <div class="audio_main">
+
+        <div class="audio_cont">
+
+            <div class="audio_img">
+
+                <h1>Click to Start</h1>
+                <a id="click_to_record"><img src="../static/img/mic_3.jpg" alt="mic" ></a>
+                <br>
+                <a onclick="clr()" class="an" >Clear</a> <br>   
+                <a href="/home" class="an" >Stop Translate</a>
+            </div>
+
+            <div class="audio_msg">
+                <div class="message_span">
+                    <span id="txt_msg">
+                        Click on the mic button to start.
+                    </span>  
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Main Body Ends -->
+
+    <!-- Footer -->
+    <p id="copyrights" style="color: #474E68; font-size:15px; width:100; text-align:center;"></p>
+    </footer>
+    <!-- Footer Ends -->
+
+    <script>
+        const d = new Date();
+        document.getElementById("copyrights").innerHTML ="Copyright © "+ d.getFullYear();
+        //Translating the text
+        click_to_record.addEventListener('click',function(){
+            var speech = true;
+            window.SpeechRecognition = window.webkitSpeechRecognition;
+        
+            const recognition = new SpeechRecognition();
+            recognition.interimResults = true;
+        
+            recognition.addEventListener('result', e => {
+                const transcript = Array.from(e.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('')
+        
+                document.getElementById("txt_msg").innerHTML = transcript;
+                console.log(transcript);
+            });
+            recognition.continuous = true;
+            recognition.start();
+            /* if (speech == true) {
+                recognition.start();
+            } */
+        })
+
+        function clr(){
+            var txt = document.getElementById("txt_msg")
+            txt.innerHTML="Text Cleared click the mic button to start again..."
+        }        
+    </script>
+
+<!-- copyrigths:
+Devanand
+Dhinesh -->
+
+</body>
+</html>
