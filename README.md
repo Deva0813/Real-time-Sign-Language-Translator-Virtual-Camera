@@ -46,6 +46,11 @@ Download form the official site
 ```ps
 python app.py
 ```
+#### To run the virtual camera :
+```ps
+python SignCam.py
+```
+##### Note : You have to install OBS software to utilize the functions of virtual sign language camera.
 
 ### 📤 OUTPUT PREVIEW :
 
